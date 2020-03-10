@@ -2,5 +2,6 @@
   "editor.formatOnSave": true,
   "prettier.printWidth": 100,
   "prettier.javascriptEnable": ["javascript", "javascriptreact"],
-  "prettier.bracketSpacing": true
+  "prettier.bracketSpacing": true,
+  "python.terminal.activateEnvironment": false
 }
