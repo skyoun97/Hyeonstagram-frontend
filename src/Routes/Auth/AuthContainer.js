@@ -10,18 +10,13 @@ export default () => {
   const username = useInput("");
   const firstName = useInput("");
   const lastName = useInput("");
+  const secret = useInput("");
   const email = useInput("");
-  const [requestSecret] = useMutation(LOG_IN, {
-    variables: { email: email.value },
-    update: (_, { data }) => {
-      const { requestSecret } = data;
-      if (!requestSecret) {
-        toast.error("You don't have an account. Please Sign up!");
-        setTimeout(() => setAction("signUp"), 3000);
-      }
-    }
+
+  const [requestSecretMutation] = useMutation(LOG_IN, {
+    variables: { email: email.value }
   });
-  const [createAccount] = useMutation(CREATE_ACCOUNT, {
+  const [createAccountMutation] = useMutation(CREATE_ACCOUNT, {
     variables: {
       email: email.value,
       username: username.value,
@@ -29,10 +24,59 @@ export default () => {
       lastName: lastName.value
     }
   });
-  const onLogin = e => {
+
+  const onSummit = async e => {
     e.preventDefault();
-    if (email.value !== "") {
-      requestSecret();
+    if (action === "logIn") {
+      if (email.value !== "") {
+        try {
+          const {
+            data: { requestSecret }
+          } = await requestSecretMutation();
+          console.log(requestSecret);
+          if (!requestSecret) {
+            toast.error(
+              "계정이 존재하지 않습니다. 회원가입을 해주세요."
+            );
+            //setTimeout(() => setAction("signUp"), 3000);
+          } else {
+            toast.success("메일함에서 로그인 코드를 확인하세요!");
+            setAction("confirm");
+          }
+        } catch {
+          toast.error(
+            "요청을 완료할 수 없습니다. 다시 시도해주세요."
+          );
+        }
+      } else {
+        toast.error("이메일 주소를 입력해 주세요.");
+      }
+    } else if (action === "signUp") {
+      if (
+        email.value !== "" &&
+        username.value !== "" &&
+        firstName.value !== "" &&
+        lastName.value !== ""
+      ) {
+        try {
+          const {
+            data: { createAccount }
+          } = await createAccountMutation();
+          if (!createAccount) {
+            toast.error("계정을 생성하지 못했습니다!");
+          } else {
+            toast.success(
+              "계정을 성공적으로 생성하였습니다! 이제 로그인을 할 수 있습니다."
+            );
+            setTimeout(() => setAction("logIn"), 1200);
+          }
+        } catch (err) {
+          toast.error(err + "");
+        }
+      } else {
+        toast.error("모든 빈칸을 채워주세요.");
+      }
+    } else if (action === "confirm") {
     }
   };
 
@@ -44,7 +88,8 @@ export default () => {
       firstName={firstName}
       lastName={lastName}
       email={email}
-      onLogin={onLogin}
+      secret={secret}
+      onSummit={onSummit}
     />
   );
 };
