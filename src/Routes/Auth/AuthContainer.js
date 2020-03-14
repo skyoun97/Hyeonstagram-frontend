@@ -98,7 +98,8 @@ export default () => {
             data: { confirmSecret: token }
           } = await confirmSecretMutation();
           if (!token) {
-            toast.error("오류가 발생했습니다.");
+            //toast.error("오류가 발생했습니다.");
+            throw Error();
           } else {
             localLogInMutation({
               variables: { token }
@@ -125,3 +126,19 @@ export default () => {
     />
   );
 };
+
+/*
+  return (
+    <AuthPresenter
+      setAction={setAction}
+      action={action}
+      username={username}
+      firstName={firstName}
+      lastName={lastName}
+      email={email}
+      secret={secret}
+      onSummit={onSummit}
+    />
+  );
+};
+*/
