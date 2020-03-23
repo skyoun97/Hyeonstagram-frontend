@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { gql } from "apollo-boost";
 import useInput from "../Hooks/useInput";
 import Input from "./Input";
-import { MainIcon, Compass, HeartEmpty, User } from "./Icons";
+import { Logo, Compass, HeartEmpty, User } from "./Icons";
+import { useQuery } from "react-apollo-hooks";
 
 const Header = styled.header`
   width: 100%;
@@ -60,18 +62,33 @@ const HeaderLink = styled(Link)`
   }
 `;
 
-export default () => {
+const ME = gql`
+  {
+    me {
+      username
+    }
+  }
+`;
+
+export default withRouter(({ history }) => {
   const search = useInput();
+  const MEQuery = useQuery(ME);
+  console.log(MEQuery);
+
+  const onSearchSubmit = e => {
+    e.preventDefault();
+    history.push(`/search?term=${search.value}`);
+  };
   return (
     <Header>
       <HeadWrapper>
         <HeaderColumn>
           <Link to="/">
-            <MainIcon />
+            <Logo />
           </Link>
         </HeaderColumn>
         <HeaderColumn>
-          <form>
+          <form onSubmit={onSearchSubmit}>
             <SearchInput {...search} placeholder="search" />
           </form>
         </HeaderColumn>
@@ -89,4 +106,4 @@ export default () => {
       </HeadWrapper>
     </Header>
   );
-};
+});
