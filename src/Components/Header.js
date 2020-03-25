@@ -10,6 +10,9 @@ import { useQuery } from "react-apollo-hooks";
 const Header = styled.header`
   width: 100%;
   border: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: white;
   border-bottom: ${props => props.theme.boxBorder};
   border-radius: 0px;
@@ -66,8 +69,9 @@ const HeaderLink = styled(Link)`
 const ME = gql`
   {
     me {
-      user {
-        username
+      username
+      posts {
+        caption
       }
     }
   }
@@ -76,7 +80,7 @@ const ME = gql`
 export default withRouter(({ history }) => {
   const search = useInput();
   const { data } = useQuery(ME);
-  console.log("ME", data);
+  console.log("data", data);
 
   const onSearchSubmit = e => {
     e.preventDefault();
@@ -102,12 +106,12 @@ export default withRouter(({ history }) => {
           <HeaderLink to="/notificationss">
             <HeartEmpty />
           </HeaderLink>
-          {!data.me ? (
-            <HeaderLink to="/#">
+          {!data || !data.me ? (
+            <HeaderLink to="#">
               <User />
             </HeaderLink>
           ) : (
-            <HeaderLink to={data.user.username}>
+            <HeaderLink to={data.me.username}>
               <User />
             </HeaderLink>
           )}

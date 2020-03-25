@@ -8,6 +8,7 @@ const Footer = styled.footer`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
+  margin: 50 0px;
 `;
 
 const List = styled.ul`
@@ -65,6 +66,9 @@ export default () => (
         <Link href="#">language</Link>
       </ListItem>
     </List>
-    <Copyright> &copy; {new Date().getFullYear()} Petstagram</Copyright>
+    <Copyright>
+      {" "}
+      &copy; {new Date().getFullYear()} Petstagram
+    </Copyright>
   </Footer>
 );

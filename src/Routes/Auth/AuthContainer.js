@@ -9,6 +9,7 @@ import {
   LOCAL_LOG_IN
 } from "./AuthQueries";
 import { toast } from "react-toastify";
+import Theme from "../../Styles/Theme";
 
 export default () => {
   const [action, setAction] = useState("logIn");
@@ -40,7 +41,11 @@ export default () => {
   const onSummit = async e => {
     e.preventDefault();
     const button = e.target.getElementsByTagName("button")[0];
+    //$("dis").css("as", "#s");
     button.disabled = true;
+    const originBgColor = button.style.background;
+    button.style.background = Theme.darkGreyColor;
+
     if (action === "logIn") {
       if (email.value === "") {
         toast.error("이메일 주소를 입력해 주세요.");
@@ -110,7 +115,10 @@ export default () => {
         }
       }
     }
-    setTimeout(() => (button.disabled = false), 1000);
+    setTimeout(() => {
+      button.disabled = false;
+      button.style.background = originBgColor;
+    }, 1000);
   };
 
   return (
