@@ -21,10 +21,6 @@ const Header = styled.header`
   align-items: center;
   padding: 25px 0px;
 `;
-/*  position: fixed;
-  top: 0;
-  left: 0;
-*/
 
 const HeadWrapper = styled.div`
   width: 100%;
