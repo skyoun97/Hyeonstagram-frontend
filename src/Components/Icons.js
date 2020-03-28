@@ -1,7 +1,7 @@
 import React from "react";
 import Theme from "../Styles/Theme";
 
-export const Logo = ({ size = 24 }) => (
+export const IconLogo = ({ size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -12,7 +12,7 @@ export const Logo = ({ size = 24 }) => (
   </svg>
 );
 
-export const Compass = () => (
+export const IconCompass = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -23,7 +23,7 @@ export const Compass = () => (
   </svg>
 );
 
-export const HeartEmpty = () => (
+export const IconHeartEmpty = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -34,7 +34,7 @@ export const HeartEmpty = () => (
   </svg>
 );
 
-export const HeartFull = () => (
+export const IconHeartFull = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -46,7 +46,7 @@ export const HeartFull = () => (
   </svg>
 );
 
-export const User = () => (
+export const IconUser = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -57,7 +57,7 @@ export const User = () => (
   </svg>
 );
 
-export const Comment = () => (
+export const IconComment = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"

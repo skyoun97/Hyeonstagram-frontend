@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
+import Helmet from "react-helmet";
 
 const Wrapper = styled.div`
   min-height: 80vh;
@@ -55,25 +56,40 @@ export default ({
   <Wrapper>
     <Form>
       {action === "logIn" && (
-        <form onSubmit={onSummit}>
-          <Input placeholder={"Email"} {...email} type="email" />
-          <Button text={"Log in"} />
-        </form>
+        <>
+          <Helmet>
+            <title>Log In | Petstagram</title>
+          </Helmet>
+          <form onSubmit={onSummit}>
+            <Input placeholder={"Email"} {...email} type="email" />
+            <Button text={"Log in"} />
+          </form>
+        </>
       )}
       {action === "signUp" && (
-        <form onSubmit={onSummit}>
-          <Input placeholder={"First name"} {...firstName} />
-          <Input placeholder={"Last name"} {...lastName} />
-          <Input placeholder={"Email"} {...email} type="email" />
-          <Input placeholder={"Username"} {...username} />
-          <Button text={"Sign up"} />
-        </form>
+        <>
+          <Helmet>
+            <title>Sign Up | Petstagram</title>
+          </Helmet>
+          <form onSubmit={onSummit}>
+            <Input placeholder={"First name"} {...firstName} />
+            <Input placeholder={"Last name"} {...lastName} />
+            <Input placeholder={"Email"} {...email} type="email" />
+            <Input placeholder={"Username"} {...username} />
+            <Button text={"Sign up"} />
+          </form>
+        </>
       )}
       {action === "confirm" && (
-        <form onSubmit={onSummit}>
-          <Input placeholder={"Secret code"} required {...secret} />
-          <Button text={"Confirm"} />
-        </form>
+        <>
+          <Helmet>
+            <title>Confirm Secret | Petstagram</title>
+          </Helmet>
+          <form onSubmit={onSummit}>
+            <Input placeholder={"Secret code"} required {...secret} />
+            <Button text={"Confirm"} />
+          </form>
+        </>
       )}
     </Form>
     {action !== "confirm" && (

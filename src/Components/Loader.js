@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Logo } from "./Icons";
+import { IconLogo } from "./Icons";
 
 const Animation = keyframes`
     from{
@@ -20,6 +20,6 @@ const Loader = styled.div`
 
 export default () => (
   <Loader>
-    <Logo size={36} />
+    <IconLogo size={36} />
   </Loader>
 );
