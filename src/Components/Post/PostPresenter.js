@@ -100,6 +100,7 @@ const Textarea = styled(TextareaAutoSize)`
   &:focus {
     outline: none;
   }
+  resize: none;
 `;
 
 const AddCommnentButton = styled.button`
@@ -177,7 +178,11 @@ export default ({
       <Timestapm> {createdAt} </Timestapm>
     </Meta>
     <AddComment>
-      <Textarea placeholder="Add a comment..." {...newComment} />
+      <Textarea
+        placeholder="Add a comment..."
+        maxlength="1000"
+        {...newComment}
+      />
       <AddCommnentButton> Post </AddCommnentButton>
     </AddComment>
   </Post>
