@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { gql } from "apollo-boost";
 import useInput from "../Hooks/useInput";
 import Input from "./Input";
 import {
   IconLogo,
   IconCompass,
   IconHeartEmpty,
-  IconUser
+  IconUser,
 } from "./Icons";
 import { useQuery } from "react-apollo-hooks";
+import { ME } from "../SharedQueries";
 
 const Header = styled.header`
   width: 100%;
@@ -19,7 +19,7 @@ const Header = styled.header`
   top: 0;
   left: 0;
   background-color: white;
-  border-bottom: ${props => props.theme.boxBorder};
+  border-bottom: ${(props) => props.theme.boxBorder};
   border-radius: 0px;
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@ const Header = styled.header`
 
 const HeadWrapper = styled.div`
   width: 100%;
-  max-width: ${props => props.theme.maxWidth};
+  max-width: ${(props) => props.theme.maxWidth};
   display: flex;
   justify-content: center;
 `;
@@ -49,7 +49,7 @@ const HeaderColumn = styled.div`
 `;
 
 const SearchInput = styled(Input)`
-  backgound-color: ${props => props.theme.bgColor};
+  backgound-color: ${(props) => props.theme.bgColor};
   padding: 0px;
   font-size: 14px;
   border-radius: 3px;
@@ -68,22 +68,11 @@ const HeaderLink = styled(Link)`
   }
 `;
 
-const ME = gql`
-  {
-    me {
-      username
-      posts {
-        caption
-      }
-    }
-  }
-`;
-
 export default withRouter(({ history }) => {
   const search = useInput("");
   const { data } = useQuery(ME);
 
-  const onSearchSubmit = e => {
+  const onSearchSubmit = (e) => {
     e.preventDefault();
     history.push(`/search?term=${search.value}`);
   };

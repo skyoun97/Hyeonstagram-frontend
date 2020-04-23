@@ -6,10 +6,11 @@ import { IconHeartFull, IconHeartEmpty, IconComment } from "../Icons";
 import TextareaAutoSize from "react-autosize-textarea";
 
 const Post = styled.div`
-  ${props => props.theme.whiteBox}
+  ${(props) => props.theme.whiteBox}
   width: 100%;
   max-width: 600px;
   margin: 5px auto;
+  user-select: none;
 `;
 
 const Header = styled.header`
@@ -44,11 +45,11 @@ const File = styled.img`
   height: 480px;
   position: absolute;
   top: 0;
-  background-image: url(${props => props.src});
+  background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: center;
   transform: translateX(
-    ${props => props.itemIdx * 600 - props.currentItem * 600}px
+    ${(props) => props.itemIdx * 600 - props.currentItem * 600}px
   );
   transition: transform 0.4s ease;
 `;
@@ -109,7 +110,7 @@ const AddCommnentButton = styled.button`
   margin: auto 0px;
   font-weight: 600;
   font-size: 14px;
-  color: ${props => props.theme.blueColor};
+  color: ${(props) => props.theme.blueColor};
   border: none;
 `;
 
@@ -125,7 +126,11 @@ export default ({
   newComment,
   setIsLiked,
   setLikeCount,
-  currentItem
+  currentItem,
+  toggleLike,
+  onKeyPress,
+  sendComment,
+  selfComments,
 }) => (
   <Post>
     <Header>
@@ -149,7 +154,7 @@ export default ({
         })}
     </Files>
     <Buttons>
-      <Button>
+      <Button onClick={toggleLike}>
         {isLiked ? <IconHeartFull /> : <IconHeartEmpty />}
       </Button>
       <Button>
@@ -165,8 +170,8 @@ export default ({
           <FatText text={username} />
           <CommentContent>{caption}</CommentContent>
         </Comment>
-        {comments &&
-          comments.map(comment => {
+        {(comments || selfComments) &&
+          [...comments, ...selfComments].map((comment) => {
             return (
               <Comment>
                 <FatText text={comment.user.username} />
@@ -180,10 +185,16 @@ export default ({
     <AddComment>
       <Textarea
         placeholder="Add a comment..."
-        maxlength="1000"
-        {...newComment}
+        maxLength="1000"
+        value={newComment.value}
+        onChange={newComment.onChange}
+        onKeyPress={onKeyPress}
+        //{...newComment}
       />
-      <AddCommnentButton> Post </AddCommnentButton>
+      <AddCommnentButton onClick={sendComment}>
+        {" "}
+        Post{" "}
+      </AddCommnentButton>
     </AddComment>
   </Post>
 );

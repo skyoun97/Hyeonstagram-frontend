@@ -24,6 +24,7 @@ const FEED_QUERY = gql`
       }
       isLiked
       likeCount
+      commentCount
       comments {
         text
         createdAt
@@ -53,7 +54,7 @@ export default () => {
       {!loading &&
         data &&
         data.seeFeed &&
-        data.seeFeed.map(post => (
+        data.seeFeed.map((post) => (
           <Post
             key={post.id}
             id={post.id}
@@ -64,6 +65,7 @@ export default () => {
             files={post.files}
             isLiked={post.isLiked}
             likeCount={post.likeCount}
+            commentCount={post.commentCount}
             comments={post.comments}
           />
         ))}
