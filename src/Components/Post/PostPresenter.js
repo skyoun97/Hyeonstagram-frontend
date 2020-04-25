@@ -33,7 +33,7 @@ const Files = styled.div`
   position: relative;
   padding-bottom: 480px;
   display: flex;
-  flex-direction: column:
+  flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
   overflow: hidden;
@@ -192,8 +192,7 @@ export default ({
         //{...newComment}
       />
       <AddCommnentButton onClick={sendComment}>
-        {" "}
-        Post{" "}
+        Post
       </AddCommnentButton>
     </AddComment>
   </Post>

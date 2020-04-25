@@ -15,6 +15,7 @@ const LoggedInRoutes = () => (
     <Route path="/:username" component={Profile} />
   </Switch>
 );
+
 const LoggedOutRoutes = () => (
   <Switch>
     <Route exact path="/" component={Auth} />
@@ -28,7 +29,7 @@ const Routes = ({ isLoggedIn }) => (
 );
 
 Routes.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Routes;

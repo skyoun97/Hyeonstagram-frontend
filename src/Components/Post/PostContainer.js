@@ -6,6 +6,7 @@ import { useMutation, useQuery } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQueries";
 import { toast } from "react-toastify";
 import { ME } from "../../SharedQueries";
+import { cleanup } from "@testing-library/react";
 
 const PostContainer = ({
   id,
@@ -40,20 +41,23 @@ const PostContainer = ({
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    const slideTimer = setTimeout(() => {
       slide();
     }, 5000);
-  }, [currentItem]);
+    return function cleanup() {
+      clearTimeout(slideTimer);
+    };
+  });
 
   const toggleLike = () => {
     if (isLikedS === true) {
-      setIsLiked(false);
       setLikeCount(likeCountS - 1);
-    } else if (isLiked === false) {
-      setIsLiked(true);
+    } else if (isLikedS === false) {
       setLikeCount(likeCountS + 1);
     }
+
     try {
+      setIsLiked(!isLikedS);
       toggleLikeMutation();
     } catch (err) {
       toast.error("좋아요 요청을 실패했습니다." + err);
@@ -74,15 +78,14 @@ const PostContainer = ({
     if (text === "") {
       return;
     }
-    comment.onChange({ target: { value: "" } });
     try {
       const {
         data: { addComment },
       } = await addCommentMuation();
+      comment.onChange({ target: { value: "" } });
       setSelfComments([...selfComments, addComment]);
     } catch {
       toast.error("댓글을 추가하는 과정에서 문제가 발생했습니다.");
-      comment.onChange({ target: { value: text } });
     }
   };
 

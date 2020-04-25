@@ -8,7 +8,7 @@ const Footer = styled.footer`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
-  margin: 50px 0px;
+  margin-top: 100px;
 `;
 
 const List = styled.ul`
@@ -22,11 +22,11 @@ const ListItem = styled.li`
 `;
 
 const Link = styled.a`
-  color: ${props => props.theme.darkBlueColor};
+  color: ${(props) => props.theme.darkBlueColor};
 `;
 
 const Copyright = styled.span`
-  color: ${props => props.theme.darkGreyColor};
+  color: ${(props) => props.theme.darkGreyColor};
 `;
 
 export default () => (
