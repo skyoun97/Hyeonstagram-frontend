@@ -7,7 +7,11 @@ import UserCard from "../../Components/UserCard";
 import SquarePost from "../../Components/SquarePost";
 
 const Wrapper = styled.div`
-  height: 50vh;
+  height: auto;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
 `;
 
@@ -28,7 +32,20 @@ const PostSection = styled.div`
   grid-auto-rows: 280px;
 `;
 
-const SearchPresenter = ({ searchTerm, loading, data }) => {
+const EFatText = styled(FatText)`
+  color: ${(props) => props.theme.darkGreyColor};
+  margin-bottom: 15px;
+  font-size: 15px;
+  display: block;
+  align-self: flex-start;
+`;
+
+const SearchPresenter = ({
+  searchTerm,
+  loading,
+  data,
+  updateQuery,
+}) => {
   if (searchTerm === undefined) {
     return (
       <Wrapper>
@@ -44,10 +61,13 @@ const SearchPresenter = ({ searchTerm, loading, data }) => {
   } else if (data && (data.searchUser || data.searchPost)) {
     return (
       <Wrapper>
+        {data.searchUser.length === 0 ? (
+          <EFatText text={"No Users Found"} />
+        ) : (
+          <EFatText text={"Users"} />
+        )}
         <UserSection>
-          {data.searchUser.length === 0 ? (
-            <FatText text={"No Users Found"} />
-          ) : (
+          {data.searchUser.length !== 0 &&
             data.searchUser.map((user) => (
               <UserCard
                 id={user.id}
@@ -56,14 +76,17 @@ const SearchPresenter = ({ searchTerm, loading, data }) => {
                 fullName={user.fullName}
                 isFollowing={user.isFollowing}
                 isSelf={user.isSelf}
+                updateQuery={updateQuery}
               />
-            ))
-          )}
+            ))}
         </UserSection>
+        {data.searchPost.length === 0 ? (
+          <EFatText text={"No Posts Found"} />
+        ) : (
+          <EFatText text={"Posts"} />
+        )}
         <PostSection>
-          {data.searchPost.length === 0 ? (
-            <FatText text={"No Posts Found"} />
-          ) : (
+          {data.searchPost.length !== 0 &&
             data.searchPost.map((post) => (
               <SquarePost
                 id={post.id}
@@ -71,8 +94,7 @@ const SearchPresenter = ({ searchTerm, loading, data }) => {
                 likeCount={post.likeCount}
                 commentCount={post.commentCount}
               />
-            ))
-          )}
+            ))}
         </PostSection>
       </Wrapper>
     );

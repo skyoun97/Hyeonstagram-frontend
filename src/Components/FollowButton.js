@@ -17,9 +17,11 @@ const UNFOLLOW = gql`
   }
 `;
 
-const FollowButton = ({ id, isFollowing }) => {
+const FollowButton = ({ id, isFollowing, updateQuery }) => {
   const [isFollowingS, setIsFollowing] = useState(isFollowing);
-  const [followMutation] = useMutation(FOLLOW, { variables: { id } });
+  const [followMutation] = useMutation(FOLLOW, {
+    variables: { id },
+  });
   const [unfollowMutation] = useMutation(UNFOLLOW, {
     variables: { id },
   });
@@ -32,6 +34,7 @@ const FollowButton = ({ id, isFollowing }) => {
       } else {
         await followMutation();
       }
+      //console.log(updateQuery());
     } catch {
       setIsFollowing(!isFollowingS);
       toast.error("문제가 발생했습니다.");
