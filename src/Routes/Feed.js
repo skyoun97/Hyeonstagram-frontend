@@ -26,6 +26,7 @@ const FEED_QUERY = gql`
       likeCount
       commentCount
       comments {
+        id
         text
         createdAt
         user {

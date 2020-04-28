@@ -6,7 +6,6 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
-import Theme from "../Styles/Theme";
 
 const Card = styled.div`
   ${(props) => props.theme.whiteBox}

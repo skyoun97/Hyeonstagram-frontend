@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import useInput from "../../Hooks/useInput";
 import PostPresenter from "./PostPresenter";
-import { useMutation, useQuery } from "react-apollo-hooks";
+import { useMutation } from "react-apollo-hooks";
 import { TOGGLE_LIKE, ADD_COMMENT } from "./PostQueries";
 import { toast } from "react-toastify";
-import { ME } from "../../SharedQueries";
-import { cleanup } from "@testing-library/react";
 
 const PostContainer = ({
   id,
@@ -88,7 +86,6 @@ const PostContainer = ({
       toast.error("댓글을 추가하는 과정에서 문제가 발생했습니다.");
     }
   };
-
   return (
     <PostPresenter
       user={user}
@@ -100,8 +97,6 @@ const PostContainer = ({
       likeCount={likeCountS}
       comments={comments}
       newComment={comment}
-      setIsLiked={setIsLiked}
-      setLikeCount={setLikeCount}
       currentItem={currentItem}
       toggleLike={toggleLike}
       onKeyPress={onKeyPress}

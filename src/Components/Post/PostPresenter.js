@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import FatText from "../FatText";
 import Avatar from "../Avatar";
 import { IconHeartFull, IconHeartEmpty, IconComment } from "../Icons";
@@ -11,6 +12,9 @@ const Post = styled.div`
   max-width: 600px;
   margin: 5px auto;
   user-select: none;
+  a {
+    color: inherit;
+  }
 `;
 
 const Header = styled.header`
@@ -124,8 +128,6 @@ export default ({
   likeCount,
   comments,
   newComment,
-  setIsLiked,
-  setLikeCount,
   currentItem,
   toggleLike,
   onKeyPress,
@@ -134,9 +136,13 @@ export default ({
 }) => (
   <Post>
     <Header>
-      <Avatar size="sm" url={avatar} />
+      <Link to={`/${username}`}>
+        <Avatar size="sm" url={avatar} />
+      </Link>
       <UserColumn>
-        <FatText text={username} />
+        <Link to={`/${username}`}>
+          <FatText text={username} />
+        </Link>
         {location && <Location>{location}</Location>}
       </UserColumn>
     </Header>
@@ -145,6 +151,7 @@ export default ({
         files.map((file, index) => {
           return (
             <File
+              key={file.id}
               id={file.id}
               src={file.url}
               itemIdx={index}
@@ -173,7 +180,7 @@ export default ({
         {(comments || selfComments) &&
           [...comments, ...selfComments].map((comment) => {
             return (
-              <Comment>
+              <Comment key={comment.id}>
                 <FatText text={comment.user.username} />
                 <CommentContent>{comment.text}</CommentContent>
               </Comment>

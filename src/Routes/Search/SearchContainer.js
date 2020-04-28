@@ -12,7 +12,7 @@ export default withRouter(({ location: { search } }) => {
       term,
     },
   });
-  console.log(data);
+  //console.log(data);
   // updateQuery((prevData) => prevData);
   // const updateCacheAndReRenderUI = (data) => {
   //   updateQuery((prevData) => prevData);

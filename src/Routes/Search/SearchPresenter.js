@@ -70,6 +70,7 @@ const SearchPresenter = ({
           {data.searchUser.length !== 0 &&
             data.searchUser.map((user) => (
               <UserCard
+                key={user.id}
                 id={user.id}
                 url={user.avatar}
                 username={user.username}
@@ -89,6 +90,7 @@ const SearchPresenter = ({
           {data.searchPost.length !== 0 &&
             data.searchPost.map((post) => (
               <SquarePost
+                key={post.id}
                 id={post.id}
                 file={post.files[0]}
                 likeCount={post.likeCount}
