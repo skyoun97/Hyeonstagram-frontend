@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 
-export const LOG_IN = gql`
+export const REQUEST_SECRET = gql`
   mutation requestSecret($email: String!) {
     requestSecret(email: $email)
   }
@@ -28,8 +28,14 @@ export const CONFIRM_SECRET = gql`
   }
 `;
 
-export const LOCAL_LOG_IN = gql`
+export const LOG_IN = gql`
   mutation logUserIn($token: String!) {
     logUserIn(token: $token) @client
+  }
+`;
+
+export const LOG_OUT = gql`
+  mutation logUserOut {
+    logUserOut @client
   }
 `;

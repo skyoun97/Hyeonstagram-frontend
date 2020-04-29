@@ -17,19 +17,21 @@ const Wrapper = styled.div`
 
 const UserSection = styled.div`
   margin-bottom: 40px;
+  margin: 10px 15px 40px 15px;
   display: grid;
   grid-gap: 25px;
-  grid-template-columns: repeat(5, 160px);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   grid-template-rows: 160px;
   grid-auto-rows: 160px;
 `;
 const PostSection = styled.div`
   margin-bottom: 40px;
   display: grid;
-  grid-gap: 25px;
-  grid-template-columns: repeat(3, 280px);
-  grid-template-rows: 280px;
-  grid-auto-rows: 280px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0px;
+  @media only screen and (min-width: 768px) {
+    grid-gap: 25px;
+  }
 `;
 
 const EFatText = styled(FatText)`

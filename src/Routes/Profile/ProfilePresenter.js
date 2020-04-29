@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import Avatar from "../../Components/Avatar";
 import FatText from "../../Components/FatText";
 import SquarePost from "../../Components/SquarePost";
+import FollowButton from "../../Components/FollowButton";
+import Helmet from "react-helmet";
+import Button from "../../Components/Button";
 
 const Wrapper = styled.div`
   min-height: 60vh;
@@ -18,12 +21,14 @@ const Header = styled.div`
   flex-direction: row;
   font-size: 16px;
   margin: 45px 10px;
+  min-height: 15vh;
 `;
 
 const Username = styled.span`
   font-size: 28px;
   display: block;
   margin-bottom: 10px;
+  margin-right: 50px;
 `;
 
 const Counts = styled.ul`
@@ -44,6 +49,12 @@ const HeaderColumn = styled.div`
   }
 `;
 
+const UsernameRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 const Bio = styled.p`
   margin: 10px 0px;
 `;
@@ -58,15 +69,16 @@ const EFatText = styled(FatText)`
 `;
 
 const PostSection = styled.div`
-  margin-bottom: 40px;
+  margin: 20px auto 80px auto;
   display: grid;
-  grid-gap: 25px;
-  grid-template-columns: repeat(3, 280px);
-  grid-template-rows: 280px;
-  grid-auto-rows: 280px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0px;
+  @media only screen and (min-width: 768px) {
+    grid-gap: 25px;
+  }
 `;
 
-const ProfilePresenter = ({ data, loading }) => {
+const ProfilePresenter = ({ data, loading, logOut }) => {
   if (loading) {
     return (
       <Wrapper>
@@ -76,12 +88,25 @@ const ProfilePresenter = ({ data, loading }) => {
   } else if (data && data.seeUser) {
     return (
       <>
+        <Helmet>
+          <title> {data.seeUser.username} | Petstagram</title>
+        </Helmet>
         <Header>
           <HeaderColumn>
             <Avatar url={data.seeUser.avatar} size={"lg"} />
           </HeaderColumn>
           <HeaderColumn>
-            <Username>{data.seeUser.username}</Username>
+            <UsernameRow>
+              <Username>{data.seeUser.username}</Username>
+              {data.seeUser.isSelf ? (
+                <Button text={"LogOut"} onClick={logOut} />
+              ) : (
+                <FollowButton
+                  id={data.seeUser.id}
+                  isFollowing={data.seeUser.isFollowing}
+                />
+              )}
+            </UsernameRow>
             <Counts>
               <Count>
                 <FatText text={data.seeUser.postsCount} /> posts

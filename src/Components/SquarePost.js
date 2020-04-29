@@ -17,6 +17,16 @@ const Overlay = styled.div`
   svg {
     fill: white;
   }
+  &:hover {
+    opacity: 1;
+  }
+  &::before {
+    content: "";
+    padding-bottom: 100%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  cursor: pointer;
 `;
 
 const Container = styled.div`
@@ -24,12 +34,6 @@ const Container = styled.div`
   background-size: cover;
   width: 100%;
   height: 100%;
-  cursor: pointer;
-  &:hover {
-    ${Overlay} {
-      opacity: 1;
-    }
-  }
 `;
 
 const Number = styled.div`
@@ -67,12 +71,9 @@ const SquarePost = ({ id, file, likeCount, commentCount }) => {
 
 SquarePost.propTypes = {
   id: PropTypes.string.isRequired,
-  files: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  file: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
   likeCount: PropTypes.number.isRequired,
   commentCount: PropTypes.number.isRequired,
 };

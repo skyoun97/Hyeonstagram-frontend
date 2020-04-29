@@ -3,10 +3,10 @@ import AuthPresenter from "./AuthPresenter";
 import useInput from "../../Hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
 import {
-  LOG_IN,
+  REQUEST_SECRET,
   CREATE_ACCOUNT,
   CONFIRM_SECRET,
-  LOCAL_LOG_IN
+  LOG_IN,
 } from "./AuthQueries";
 import { toast } from "react-toastify";
 import Theme from "../../Styles/Theme";
@@ -19,26 +19,26 @@ export default () => {
   const secret = useInput("");
   const email = useInput("");
 
-  const [requestSecretMutation] = useMutation(LOG_IN, {
-    variables: { email: email.value }
+  const [requestSecretMutation] = useMutation(REQUEST_SECRET, {
+    variables: { email: email.value },
   });
   const [createAccountMutation] = useMutation(CREATE_ACCOUNT, {
     variables: {
       email: email.value,
       username: username.value,
       firstName: firstName.value,
-      lastName: lastName.value
-    }
+      lastName: lastName.value,
+    },
   });
   const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {
     variables: {
       email: email.value,
-      secret: secret.value
-    }
+      secret: secret.value,
+    },
   });
-  const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
+  const [localLogInMutation] = useMutation(LOG_IN);
 
-  const onSummit = async e => {
+  const onSummit = async (e) => {
     e.preventDefault();
     const button = e.target.getElementsByTagName("button")[0];
     //$("dis").css("as", "#s");
@@ -52,7 +52,7 @@ export default () => {
       } else {
         try {
           const {
-            data: { requestSecret }
+            data: { requestSecret },
           } = await requestSecretMutation();
           if (!requestSecret) {
             toast.error(
@@ -80,7 +80,7 @@ export default () => {
       } else {
         try {
           const {
-            data: { createAccount }
+            data: { createAccount },
           } = await createAccountMutation();
           if (!createAccount) {
             toast.error("계정을 생성하지 못했습니다!");
@@ -100,14 +100,14 @@ export default () => {
       } else {
         try {
           const {
-            data: { confirmSecret: token }
+            data: { confirmSecret: token },
           } = await confirmSecretMutation();
           if (!token) {
             //toast.error("오류가 발생했습니다.");
             throw Error();
           } else {
             localLogInMutation({
-              variables: { token }
+              variables: { token },
             });
           }
         } catch (err) {
