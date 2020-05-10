@@ -11,6 +11,7 @@ export const resolvers = {
           isLoggedIn: true,
         },
       });
+      
       return null;
     },
     logUserOut: (_, __, { cache }) => {
