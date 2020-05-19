@@ -15,5 +15,4 @@ export default {
             border:${BOX_BORDER};
             background-color:white;
   `,
-  a: "",
 };
