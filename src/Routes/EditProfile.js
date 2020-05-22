@@ -1,1 +1,3 @@
-export default () => "Edit Profile";
+export default () => {
+  return "Edit Profile";
+};
