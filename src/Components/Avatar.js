@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import NoAvatarImage from "../Asset/no_avatar.png";
+import Skeleton from "react-loading-skeleton";
+import ImageLoader from "./ImageLoader";
 
 const AvatarPropTypes = {
   size: PropTypes.oneOf(["sm", "md", "lg"]).isRequired,
@@ -9,10 +11,24 @@ const AvatarPropTypes = {
 };
 
 const Avatar = ({ size = "sm", url, className }) => {
+  const [loading, setLoading] = useState(true);
   if (url === undefined || url === null) {
     url = noAvatarURl;
   }
-  return <Contatiner size={size} url={url} className={className} />;
+  return (
+    <>
+      <ImageLoader src={url} setLoading={setLoading} />
+      {loading ? (
+        <Skeleton
+          circle={true}
+          width={size === "sm" ? 30 : size === "md" ? 50 : 150}
+          height={size === "sm" ? 30 : size === "md" ? 50 : 150}
+        />
+      ) : (
+        <Contatiner size={size} url={url} className={className} />
+      )}
+    </>
+  );
 };
 Avatar.propTypes = AvatarPropTypes;
 

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { IconHeartFull, IconCommentFull } from "./Icons";
 import FatText from "./FatText";
+import Skeleton from "react-loading-skeleton";
+import ImageLoader from "./ImageLoader";
 
 const SquarePostPropTypes = {
   id: PropTypes.string.isRequired,
@@ -15,22 +17,26 @@ const SquarePostPropTypes = {
 
 const SquarePost = ({ id, file, likeCount, commentCount }) => {
   const [loading, setLoading] = useState(true);
-  const onLoad = (e) => {
-    setLoading(false);
-  };
   return (
-    <Container bg={file.url} onLoad={onLoad}>
-      <Overlay>
-        <Number>
-          <IconHeartFull />
-          <NumberText text={likeCount} />
-        </Number>
-        <Number>
-          <IconCommentFull />
-          <NumberText text={commentCount} />
-        </Number>
-      </Overlay>
-    </Container>
+    <>
+      <ImageLoader src={file.url} setLoading={setLoading} />
+      {loading ? (
+        <Skeleton height={295} />
+      ) : (
+        <Container bg={file.url}>
+          <Overlay>
+            <Number>
+              <IconHeartFull />
+              <NumberText text={likeCount} />
+            </Number>
+            <Number>
+              <IconCommentFull />
+              <NumberText text={commentCount} />
+            </Number>
+          </Overlay>
+        </Container>
+      )}
+    </>
   );
 };
 SquarePost.propTypes = SquarePostPropTypes;
