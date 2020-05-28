@@ -5,19 +5,12 @@ import Button from "./Button";
 import { useMutation } from "react-apollo-hooks";
 import { toast } from "react-toastify";
 
-const FOLLOW = gql`
-  mutation follow($id: String!) {
-    follow(id: $id)
-  }
-`;
+const FollowButtonPropTypes = {
+  id: PropType.string.isRequired,
+  isFollowing: PropType.bool.isRequired,
+};
 
-const UNFOLLOW = gql`
-  mutation unfollow($id: String!) {
-    unfollow(id: $id)
-  }
-`;
-
-const FollowButton = ({ id, isFollowing, updateQuery }) => {
+const FollowButton = ({ id, isFollowing }) => {
   const [isFollowingS, setIsFollowing] = useState(isFollowing);
   const [followMutation] = useMutation(FOLLOW, {
     variables: { id },
@@ -44,15 +37,24 @@ const FollowButton = ({ id, isFollowing, updateQuery }) => {
   return (
     <Button
       text={isFollowingS ? "Unfollow" : "Follow"}
-      isDark={isFollowingS ? true : false}
+      disabled={isFollowingS ? true : false}
       onClick={toggleFollow}
     ></Button>
   );
 };
 
-FollowButton.propTypes = {
-  id: PropType.string.isRequired,
-  isFollowing: PropType.bool.isRequired,
-};
+FollowButton.propTypes = FollowButtonPropTypes;
+
+const FOLLOW = gql`
+  mutation follow($id: String!) {
+    follow(id: $id)
+  }
+`;
+
+const UNFOLLOW = gql`
+  mutation unfollow($id: String!) {
+    unfollow(id: $id)
+  }
+`;
 
 export default FollowButton;

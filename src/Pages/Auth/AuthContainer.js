@@ -9,10 +9,10 @@ import {
   LOG_IN,
 } from "./AuthQueries";
 import { toast } from "react-toastify";
-import Theme from "../../Styles/Theme";
 
 export default () => {
   const [action, setAction] = useState("logIn");
+  const [btnDisalbed, setBtnDisalbed] = useState(false);
   const username = useInput("");
   const firstName = useInput("");
   const lastName = useInput("");
@@ -40,11 +40,7 @@ export default () => {
 
   const onSummit = async (e) => {
     e.preventDefault();
-    const button = e.target.getElementsByTagName("button")[0];
-    //$("dis").css("as", "#s");
-    button.disabled = true;
-    const originBgColor = button.style.background;
-    button.style.background = Theme.darkGreyColor;
+    setBtnDisalbed(true);
 
     if (action === "logIn") {
       if (email.value === "") {
@@ -58,7 +54,6 @@ export default () => {
             toast.error(
               "계정이 존재하지 않습니다. 회원가입을 해주세요."
             );
-            //setTimeout(() => setAction("signUp"), 3000);
           } else {
             toast.success("메일함에서 로그인 코드를 확인하세요!");
             setAction("confirm");
@@ -103,10 +98,9 @@ export default () => {
             data: { confirmSecret: token },
           } = await confirmSecretMutation();
           if (!token) {
-            //toast.error("오류가 발생했습니다.");
-            throw Error();
+            throw Error("Secret code가 일치하지 않습니다.");
           } else {
-            localLogInMutation({
+            await localLogInMutation({
               variables: { token },
             });
           }
@@ -115,10 +109,7 @@ export default () => {
         }
       }
     }
-    setTimeout(() => {
-      button.disabled = false;
-      button.style.background = originBgColor;
-    }, 1000);
+    setBtnDisalbed(false);
   };
 
   return (
@@ -131,6 +122,7 @@ export default () => {
       email={email}
       secret={secret}
       onSummit={onSummit}
+      btnDisalbed={btnDisalbed}
     />
   );
 };

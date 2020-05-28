@@ -7,11 +7,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 import Routes from "./Routes";
-import Footer from "./Footer";
-import Header from "./Header";
 
-const QUERY = gql`
+const QUERY_CHECK_LOGIN = gql`
   {
     isLoggedIn @client
   }
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 export default () => {
   const {
     data: { isLoggedIn },
-  } = useQuery(QUERY);
+  } = useQuery(QUERY_CHECK_LOGIN);
 
   return (
     <ThemeProvider theme={Theme}>

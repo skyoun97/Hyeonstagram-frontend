@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { IconHeartFull, IconCommentFull } from "./Icons";
 import FatText from "./FatText";
+
+const SquarePostPropTypes = {
+  id: PropTypes.string.isRequired,
+  file: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  likeCount: PropTypes.number.isRequired,
+  commentCount: PropTypes.number.isRequired,
+};
+
+const SquarePost = ({ id, file, likeCount, commentCount }) => {
+  const [loading, setLoading] = useState(true);
+  const onLoad = (e) => {
+    setLoading(false);
+  };
+  return (
+    <Container bg={file.url} onLoad={onLoad}>
+      <Overlay>
+        <Number>
+          <IconHeartFull />
+          <NumberText text={likeCount} />
+        </Number>
+        <Number>
+          <IconCommentFull />
+          <NumberText text={commentCount} />
+        </Number>
+      </Overlay>
+    </Container>
+  );
+};
+SquarePost.propTypes = SquarePostPropTypes;
 
 const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.2);
@@ -51,31 +82,5 @@ const NumberText = styled(FatText)`
   font-weight: 500;
   margin-left: 7px;
 `;
-
-const SquarePost = ({ id, file, likeCount, commentCount }) => {
-  return (
-    <Container bg={file.url}>
-      <Overlay>
-        <Number>
-          <IconHeartFull />
-          <NumberText text={likeCount} />
-        </Number>
-        <Number>
-          <IconCommentFull />
-          <NumberText text={commentCount} />
-        </Number>
-      </Overlay>
-    </Container>
-  );
-};
-
-SquarePost.propTypes = {
-  id: PropTypes.string.isRequired,
-  file: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-  }).isRequired,
-  likeCount: PropTypes.number.isRequired,
-  commentCount: PropTypes.number.isRequired,
-};
 
 export default SquarePost;

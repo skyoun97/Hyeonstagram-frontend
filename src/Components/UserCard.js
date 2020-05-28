@@ -6,6 +6,41 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
+const UserCardPropTypes = {
+  id: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  fullName: PropTypes.string.isRequired,
+  isFollowing: PropTypes.bool.isRequired,
+  url: PropTypes.string,
+  isSelf: PropTypes.bool.isRequired,
+};
+const UserCard = ({
+  id,
+  fullName,
+  username,
+  isFollowing,
+  url,
+  isSelf,
+  updateQuery,
+}) => (
+  <Card>
+    <ELink to={`/${username}`}>
+      <EAvatar url={url} size={"md"} />
+      <FatText text={username} />
+      <GreyText>{fullName}</GreyText>
+    </ELink>
+    {!isSelf ? (
+      <FollowButton
+        id={id}
+        isFollowing={isFollowing}
+        updateQuery={updateQuery}
+      />
+    ) : (
+      <Button text={"My account"} disabled={true} />
+    )}
+  </Card>
+);
+UserCard.propTypes = UserCardPropTypes;
 
 const Card = styled.div`
   ${(props) => props.theme.whiteBox}
@@ -33,41 +68,5 @@ const GreyText = styled.span`
   font-weight: 400;
   color: ${(props) => props.theme.darkGreyColor};
 `;
-
-const UserCard = ({
-  id,
-  fullName,
-  username,
-  isFollowing,
-  url,
-  isSelf,
-  updateQuery,
-}) => (
-  <Card>
-    <ELink to={`/${username}`}>
-      <EAvatar url={url} size={"md"} />
-      <FatText text={username} />
-      <GreyText>{fullName}</GreyText>
-    </ELink>
-    {!isSelf ? (
-      <FollowButton
-        id={id}
-        isFollowing={isFollowing}
-        updateQuery={updateQuery}
-      />
-    ) : (
-      <Button text={"My account"} isDark={true} />
-    )}
-  </Card>
-);
-
-UserCard.propTypes = {
-  id: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  fullName: PropTypes.string.isRequired,
-  isFollowing: PropTypes.bool.isRequired,
-  url: PropTypes.string,
-  isSelf: PropTypes.bool.isRequired,
-};
 
 export default UserCard;

@@ -12,6 +12,49 @@ import {
 import { useQuery } from "react-apollo-hooks";
 import { ME } from "../SharedQueries";
 
+export default withRouter(({ history }) => {
+  const search = useInput("");
+  const { data } = useQuery(ME);
+
+  const onSearchSubmit = (e) => {
+    e.preventDefault();
+    history.push(`/search?term=${search.value}`);
+  };
+  return (
+    <Header>
+      <HeadWrapper>
+        <HeaderColumn>
+          <Link to="/">
+            <IconLogo />
+          </Link>
+        </HeaderColumn>
+        <HeaderColumn>
+          <form onSubmit={onSearchSubmit}>
+            <SearchInput {...search} placeholder="search" />
+          </form>
+        </HeaderColumn>
+        <HeaderColumn>
+          <HeaderLink to="/explore">
+            <IconCompass />
+          </HeaderLink>
+          <HeaderLink to="/notificationss">
+            <IconHeartEmpty />
+          </HeaderLink>
+          {!data || !data.me ? (
+            <HeaderLink to="#">
+              <IconUser />
+            </HeaderLink>
+          ) : (
+            <HeaderLink to={data.me.username}>
+              <IconUser />
+            </HeaderLink>
+          )}
+        </HeaderColumn>
+      </HeadWrapper>
+    </Header>
+  );
+});
+
 const Header = styled.header`
   width: 100%;
   border: 0;
@@ -67,46 +110,3 @@ const HeaderLink = styled(Link)`
     margin-right: 30px;
   }
 `;
-
-export default withRouter(({ history }) => {
-  const search = useInput("");
-  const { data } = useQuery(ME);
-
-  const onSearchSubmit = (e) => {
-    e.preventDefault();
-    history.push(`/search?term=${search.value}`);
-  };
-  return (
-    <Header>
-      <HeadWrapper>
-        <HeaderColumn>
-          <Link to="/">
-            <IconLogo />
-          </Link>
-        </HeaderColumn>
-        <HeaderColumn>
-          <form onSubmit={onSearchSubmit}>
-            <SearchInput {...search} placeholder="search" />
-          </form>
-        </HeaderColumn>
-        <HeaderColumn>
-          <HeaderLink to="/explore">
-            <IconCompass />
-          </HeaderLink>
-          <HeaderLink to="/notificationss">
-            <IconHeartEmpty />
-          </HeaderLink>
-          {!data || !data.me ? (
-            <HeaderLink to="#">
-              <IconUser />
-            </HeaderLink>
-          ) : (
-            <HeaderLink to={data.me.username}>
-              <IconUser />
-            </HeaderLink>
-          )}
-        </HeaderColumn>
-      </HeadWrapper>
-    </Header>
-  );
-});

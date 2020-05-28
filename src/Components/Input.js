@@ -2,15 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Container = styled.input`
-  border: 0;
-  border: ${props => props.theme.boxBorder};
-  border-radius: ${props => props.theme.borderRadius};
-  background-color: ${props => props.theme.bgColor};
-  height: 35px;
-  font-size: 12px;
-  padding: 0px 15px;
-`;
+const InputPropTypes = {
+  placeholder: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  type: PropTypes.string,
+};
 
 const Input = ({
   placeholder,
@@ -18,7 +16,7 @@ const Input = ({
   value,
   onChange,
   type,
-  className
+  className,
 }) => (
   <Container
     className={className}
@@ -29,13 +27,16 @@ const Input = ({
     type={type}
   />
 );
+Input.propTypes = InputPropTypes;
 
-Input.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-  required: PropTypes.bool,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  type: PropTypes.string
-};
+const Container = styled.input`
+  border: 0;
+  border: ${(props) => props.theme.boxBorder};
+  border-radius: ${(props) => props.theme.borderRadius};
+  background-color: ${(props) => props.theme.bgColor};
+  height: 35px;
+  font-size: 12px;
+  padding: 0px 15px;
+`;
 
 export default Input;

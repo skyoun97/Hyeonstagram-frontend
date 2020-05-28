@@ -4,19 +4,14 @@ export const defaults = {
 
 export const resolvers = {
   Mutation: {
-    logUserIn: (_, { token }, { cache }) => {
-      localStorage.setItem("token", token);
-      cache.writeData({
-        data: {
-          isLoggedIn: true,
-        },
-      });
-      
+    logUserIn: async (_, { token }, { cache }) => {
+      await localStorage.setItem("token", token);
+      window.location.reload();
       return null;
     },
     logUserOut: (_, __, { cache }) => {
       localStorage.removeItem("token");
-      window.location = "/";
+      window.location.assign("/");
       return null;
     },
   },
