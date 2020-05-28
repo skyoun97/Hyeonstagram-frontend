@@ -7,11 +7,12 @@ const ButtonPropTypes = {
   isDark: PropTypes.bool,
 };
 
-const Button = ({ text, className, onClick, disabled }) => (
+const Button = ({ text, className, onClick, disabled, isDark }) => (
   <Container
     className={className}
     onClick={onClick}
     disabled={disabled}
+    isDark={isDark}
   >
     {text}
   </Container>
@@ -26,12 +27,13 @@ const Container = styled.button`
   color: white;
   font-weight: 600;
   background-color: ${(props) =>
-    props.disabled
+    props.disabled || props.isDark
       ? props.theme.darkGreyColor
       : props.theme.blueColor};
   text-align: center;
   padding: 7px 0px;
   font-size: 14px;
+  cursor: pointer;
 `;
 
 export default Button;

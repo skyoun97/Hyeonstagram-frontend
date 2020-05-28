@@ -36,7 +36,7 @@ const UserCard = ({
         updateQuery={updateQuery}
       />
     ) : (
-      <Button text={"My account"} disabled={true} />
+      <Button text={"My account"} isDark={true} />
     )}
   </Card>
 );

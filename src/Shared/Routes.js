@@ -9,6 +9,7 @@ import Search from "../Pages/Search";
 import gql from "graphql-tag";
 import { useQuery, useMutation } from "react-apollo-hooks";
 import { LOG_OUT } from "../Pages/Auth/AuthQueries";
+import Header from "../Components/Header";
 
 const QUERY_CHECK_TOKEN = gql`
   {
@@ -44,14 +45,19 @@ const Routes = ({ isLoggedIn }) => {
   }
 
   return (
-    <Switch>
-      {!isLoggedIn ? (
-        <Route exact path="/" component={Auth} />
-      ) : (
-        RoutesListWithLogin.map((route) => <Route exact {...route} />)
-      )}
-      <Redirect from="*" to="/" />
-    </Switch>
+    <>
+      {isLoggedIn && <Header />}
+      <Switch>
+        {!isLoggedIn ? (
+          <Route exact path="/" component={Auth} />
+        ) : (
+          RoutesListWithLogin.map((route) => (
+            <Route exact {...route} />
+          ))
+        )}
+        <Redirect from="*" to="/" />
+      </Switch>
+    </>
   );
 };
 

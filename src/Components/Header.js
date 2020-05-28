@@ -92,7 +92,7 @@ const HeaderColumn = styled.div`
 `;
 
 const SearchInput = styled(Input)`
-  backgound-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.bgColor};
   padding: 0px;
   font-size: 14px;
   border-radius: 3px;

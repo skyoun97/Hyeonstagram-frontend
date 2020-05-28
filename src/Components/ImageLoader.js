@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { toast } from "react-toastify";
 
 const ImageLoaderPropTypes = {
   src: PropTypes.bool,

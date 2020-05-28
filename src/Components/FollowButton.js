@@ -37,7 +37,7 @@ const FollowButton = ({ id, isFollowing }) => {
   return (
     <Button
       text={isFollowingS ? "Unfollow" : "Follow"}
-      disabled={isFollowingS ? true : false}
+      isDark={isFollowingS ? true : false}
       onClick={toggleFollow}
     ></Button>
   );

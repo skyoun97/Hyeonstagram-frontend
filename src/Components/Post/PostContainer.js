@@ -28,24 +28,17 @@ const PostContainer = ({
   const [addCommentMuation] = useMutation(ADD_COMMENT, {
     variables: { postId: id, text: comment.value },
   });
-  const slide = () => {
+  const slideNext = () => {
     const totalFiles = files.length;
-    if (currentItem === totalFiles - 1) {
-      setCurrentItem(0);
-    } else {
+    if (currentItem < totalFiles - 1) {
       setCurrentItem(currentItem + 1);
     }
-    //console.log(currentItem);
   };
-
-  useEffect(() => {
-    const slideTimer = setTimeout(() => {
-      slide();
-    }, 5000);
-    return function cleanup() {
-      clearTimeout(slideTimer);
-    };
-  });
+  const slidePrev = () => {
+    if (currentItem > 0) {
+      setCurrentItem(currentItem - 1);
+    }
+  };
 
   const toggleLike = () => {
     if (isLikedS === true) {
@@ -102,6 +95,8 @@ const PostContainer = ({
       onKeyPress={onKeyPress}
       sendComment={sendComment}
       selfComments={selfComments}
+      slideNext={slideNext}
+      slidePrev={slidePrev}
     />
   );
 };

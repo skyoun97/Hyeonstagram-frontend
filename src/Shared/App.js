@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GlobalStyles from "../Styles/GlobalStyles";
 import Theme from "../Styles/Theme";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Routes from "./Routes";
 
@@ -34,7 +33,6 @@ export default () => {
         <GlobalStyles />
         <Router>
           <>
-            {isLoggedIn && <Header />}
             <Wrapper>
               <Routes isLoggedIn={isLoggedIn} />
               <Footer />
