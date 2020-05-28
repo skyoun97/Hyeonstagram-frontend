@@ -21,5 +21,6 @@ const Animation = keyframes`
 
 const Loader = styled.div`
   animation: ${Animation} 1s linear infinite;
+  padding: 20px;
   margin: auto;
 `;
