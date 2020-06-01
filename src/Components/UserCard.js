@@ -6,6 +6,7 @@ import Avatar from "./Avatar";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import FollowButton from "./FollowButton";
+
 const UserCardPropTypes = {
   id: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
@@ -14,6 +15,7 @@ const UserCardPropTypes = {
   url: PropTypes.string,
   isSelf: PropTypes.bool.isRequired,
 };
+
 const UserCard = ({
   id,
   fullName,
