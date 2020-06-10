@@ -1,5 +1,5 @@
 <p align="center" >
-<a href="https://agent-blog.herokuapp.com/" align="center"> <img src="https://user-images.githubusercontent.com/13609011/84003962-c3ecde80-a9a5-11ea-8722-8a7e9d99681f.png" width="250" height="250" align="center"/></a>
+<a href="https://agent-blog.herokuapp.com/" align="center"> <img src="https://user-images.githubusercontent.com/13609011/84231804-e445a600-ab29-11ea-828f-595843547200.png" width="250" height="250" align="center"/></a>
 </p>
 <h1 align="center">
   Hyeonstagram Client </br>  <img alt="React" src="https://img.shields.io/badge/React-16.9.34-red.svg"> <img alt="Hooks" src="https://img.shields.io/badge/Hooks-0.5.0-blueviolet.svg"> <img alt="Apollo" src="https://img.shields.io/badge/React_Apollo-3.1.5-green.svg"> <img alt="platform" src="https://img.shields.io/badge/platform-Web-orange.svg">
@@ -22,7 +22,7 @@
 
 ### 1) 메인 피드
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46dbfd87-8ba3-43dc-aea7-e5c48534f5fc/Feed.mov.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/46dbfd87-8ba3-43dc-aea7-e5c48534f5fc/Feed.mov.gif)
+![Feed mov](https://user-images.githubusercontent.com/13609011/84231891-21119d00-ab2a-11ea-86df-9fd15f30eb93.gif)
 
 - 좋아요 / 좋아요 취소
     - 좋아요 쿼리 요청을 보내기 전 Frontend에서 먼저 좋아요 처리 ⇒ 반응속도 Up
@@ -32,7 +32,7 @@
 
 ### 2) 무한 스크롤 (Infinite scroll)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fbe7ecba-74fa-4dcd-a65b-791a140a63eb/Infinity_Scroll.mov.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fbe7ecba-74fa-4dcd-a65b-791a140a63eb/Infinity_Scroll.mov.gif)
+![Infinity Scroll mov](https://user-images.githubusercontent.com/13609011/84231909-2969d800-ab2a-11ea-8735-28393d38c753.gif)
 
 - Infinity Scroll
     - Observer 를 이용해 맨 아래 게시물 감지
@@ -44,11 +44,11 @@
 <table>
    <tr>
      <th align="center">
-       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84225388-f586b680-ab19-11ea-812c-4adea276119b.gif"/>
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84231919-2e2e8c00-ab2a-11ea-9b4f-8c2f99061132.gif"/>
        <br><br>[회원가입]
      </th>
      <th align="center">
-       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84225392-f7e91080-ab19-11ea-884a-ec2b1ec6920a.gif"/>
+       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84231912-2bcc3200-ab2a-11ea-9542-711d59f6cad8.gif"/>
        <br><br>[로그인] 
     </th>
   </tr>
@@ -63,11 +63,11 @@
 <table>
    <tr>
      <th align="center">
-       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84225388-f586b680-ab19-11ea-812c-4adea276119b.gif"/>
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84231912-2bcc3200-ab2a-11ea-9542-711d59f6cad8.gif"/>
        <br><br>[피드]
      </th>
      <th align="center">
-       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84225392-f7e91080-ab19-11ea-884a-ec2b1ec6920a.gif"/>
+       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84231936-34bd0380-ab2a-11ea-9949-9cae4adf19c6.gif"/>
        <br><br>[유저 홈] 
     </th>
   </tr>
@@ -81,11 +81,11 @@
 <table>
    <tr>
      <th align="center">
-       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84225388-f586b680-ab19-11ea-812c-4adea276119b.gif"/>
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84231933-338bd680-ab2a-11ea-9506-b359cbb1faba.gif"/>
        <br><br>[유저 홈]
      </th>
      <th align="center">
-       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84225392-f7e91080-ab19-11ea-884a-ec2b1ec6920a.gif"/>
+       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84231936-34bd0380-ab2a-11ea-9949-9cae4adf19c6.gif"/>
        <br><br>[반응형] 
     </th>
   </tr>
@@ -100,11 +100,11 @@
 <table>
    <tr>
      <th align="center">
-       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84225388-f586b680-ab19-11ea-812c-4adea276119b.gif"/>
+       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84231904-27077e00-ab2a-11ea-92f8-905738e872f8.gif"/>
        <br><br>[Following]
      </th>
      <th align="center">
-       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84225392-f7e91080-ab19-11ea-884a-ec2b1ec6920a.gif"/>
+       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84231927-31c21300-ab2a-11ea-8602-14d9c73283c7.gif"/>
        <br><br>[Unfollowing] 
     </th>
   </tr>
@@ -113,63 +113,6 @@
 
 - 피드에 Following 한 사람들의 게시물만 보여짐
 - Unfollow 하면 피드에 해당 사람의 게시물이 사라짐
-
-### 1) 메인 홈페이지
-
-![velog_feed mov](https://user-images.githubusercontent.com/13609011/84225378-edc71200-ab19-11ea-9fd8-371c31a68d09.gif)
-
-- Card 디자인 & Skeleton 로딩 구현
-- 트렌딩 / 최신 게시물 노출
-- hover 애니메이션
-- 인기태그 표시
-
-
-
-### 2) Responsive Layout
-
-- 미디어 쿼리를 이용하여 반응형 웹사이트를 구현
-
-
-
-### 3) 로그인
-
-<table>
-   <tr>
-     <th align="center">
-       <img width="400" alt="1" src="https://user-images.githubusercontent.com/13609011/84225386-f3bcf300-ab19-11ea-96e1-073c342a652d.gif"/>
-       <br><br>[로그인]
-     </th>
-     <th align="center">
-       <img width="400" alt="2" src="https://user-images.githubusercontent.com/13609011/84225370-ebfd4e80-ab19-11ea-84d7-0becdc0e8765.gif"/>
-       <br><br>[회원가입] 
-    </th>
-  </tr>
-</table>
-
-- 모달을 통해 로그인과 회원가입을 구현했습니다.
-    - Portal 사용
-
-![velog_login mov](https://user-images.githubusercontent.com/13609011/84225384-f1f32f80-ab19-11ea-8172-9adfed4cab7d.gif)
-
-- 이메일 인증으로 로그인 구현
-    - nodemailer 사용
-
-
-
-### 4) 해시태그 검색
-
-![velog_hashtag mov](https://user-images.githubusercontent.com/13609011/84225382-f0296c00-ab19-11ea-9582-e3b538e6a086.gif)
-
-- Skeleton loading 구현
-
-
-
-### 5) 게시물 검색
-
-![velog_search mov](https://user-images.githubusercontent.com/13609011/84225393-f91a3d80-ab19-11ea-9db4-99c66a9edec0.gif)
-
-- Input 값의 변화를 실시간으로 감지하여 입력 즉시 검색 데이터를 받아옴
-
 
 
 ## 활용기술
