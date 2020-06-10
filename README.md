@@ -1,5 +1,5 @@
 <p align="center" >
-<a href="https://agent-blog.herokuapp.com/" align="center"> <img src="https://user-images.githubusercontent.com/13609011/84231804-e445a600-ab29-11ea-828f-595843547200.png" width="250" height="250" align="center"/></a>
+<a href="https://agent-blog.herokuapp.com/" align="center"> <img src="https://user-images.githubusercontent.com/13609011/84232431-3affaf80-ab2b-11ea-8ee7-7bbb77240e8c.jpeg" width="250" height="250" align="center"/></a>
 </p>
 <h1 align="center">
   Hyeonstagram Client </br>  <img alt="React" src="https://img.shields.io/badge/React-16.9.34-red.svg"> <img alt="Hooks" src="https://img.shields.io/badge/Hooks-0.5.0-blueviolet.svg"> <img alt="Apollo" src="https://img.shields.io/badge/React_Apollo-3.1.5-green.svg"> <img alt="platform" src="https://img.shields.io/badge/platform-Web-orange.svg">
