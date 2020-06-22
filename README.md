@@ -10,7 +10,6 @@
 > 인스타그램을 클론코딩하면서 React와 Hooks을 깊이 있게 이해하고 GraphQL과 Prisma을 공부하여 풀스택 개발을 하기 위해 프로젝트를 시작하였습니다.
 
 
-
 ## 서비스 소개
 
 ### [Instagram](https://www.instagram.com/) 풀스택 클론코딩 프로젝트
